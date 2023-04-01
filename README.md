@@ -12,7 +12,7 @@ Also includes a postman collection to ease trying out all available endpoints.
 - POST `/assets` Creates a new asset.
 - GET `/assets/:id` Gets an asset by id.
 
-### Posts
+#### Posts
 
 - POST `/posts` Creates a new blog post
 - PUT `/posts/:id` Updates a blog post with the specified id.
