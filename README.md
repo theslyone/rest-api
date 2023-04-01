@@ -5,6 +5,15 @@ Users can also view all blog posts or a specific blog post by its ID. API also a
 
 Also includes a postman collection to ease trying out all available endpoints.
 
+## Features
+
+- [x] Restful API for assets and blog post management.
+- [x] Request data validation using Joi.
+- [x] Containerize using `docker`.
+- [x] Route tests using `supertest`.
+- [ ] Add API authentication and authorization using `passport`.
+- [ ] Implement unit and integration tests.
+
 ## Exposed endpoints
 
 #### Assets
