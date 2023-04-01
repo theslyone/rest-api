@@ -26,7 +26,9 @@ Also includes a postman collection to ease trying out all available endpoints.
 npm install
 ```
 
-## Running route tests
+## Running tests
+
+`Note: Only route tests are implemented for simplicity but unit and integration tests should be added to provide more test coverage.`
 
 ```sh
 docker-compose up -d
