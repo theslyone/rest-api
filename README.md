@@ -26,6 +26,16 @@ Also includes a postman collection to ease trying out all available endpoints.
 npm install
 ```
 
+## Starting the API server
+
+```sh
+docker-compose up -d
+```
+
+## Playing around with the API
+
+A postman collection is provided for ease. You can also try the above listed endpoints using a preferred rest client (curl etc)
+
 ## Running tests
 
 `Note: Only route tests are implemented for simplicity but unit and integration tests should be added to provide more test coverage.`
