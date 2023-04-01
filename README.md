@@ -33,6 +33,6 @@ docker-compose up -d
 npm run test
 ```
 
-## Test Results
+## Test results
 
 ![ScreenShot](./screenshots/test_results.png?raw=true 'Test results')
