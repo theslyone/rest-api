@@ -5,7 +5,7 @@ Users can also view all blog posts or a specific blog post by its ID. API also a
 
 Also includes a postman collection to ease trying out all available endpoints.
 
-### Exposed endpoints
+## Exposed endpoints
 
 #### Assets
 
@@ -20,15 +20,19 @@ Also includes a postman collection to ease trying out all available endpoints.
 - GET `/posts` Gets all blog post. Can also filter by category and sort by date.
 - GET `/posts/:id` Get a blog post by id.
 
-### Install dependencies
+## Install dependencies
 
 ```sh
 npm install
 ```
 
-### Running route tests
+## Running route tests
 
 ```sh
 docker-compose up -d
 npm run test
 ```
+
+## Test Results
+
+![ScreenShot](./screenshots/test_results.png?raw=true 'Test results')
