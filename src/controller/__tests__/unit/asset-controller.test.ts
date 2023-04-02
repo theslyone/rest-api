@@ -3,7 +3,7 @@ import { AssetType } from "../../../model/asset"
 import { AssetService } from "../../../service/asset-service"
 import { mockOf } from "../../../__tests__/mockOf"
 
-describe('Integration - AssetService', () => {
+describe('Unit - AssetService', () => {
   const assetService = mockOf<AssetService>()
   const assetController = new AssetController(assetService)
 

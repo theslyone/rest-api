@@ -3,7 +3,7 @@ import { PostType } from "../../../model/post"
 import { PostService } from "../../../service/post-service"
 import { mockOf } from "../../../__tests__/mockOf"
 
-describe('Integration - PostService', () => {
+describe('Unit - PostService', () => {
   const postService = mockOf<PostService>()
   const postController = new PostController(postService)
 
