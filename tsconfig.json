@@ -19,9 +19,6 @@
     "target": "es2020",
     "esModuleInterop": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/__tests__/mockOf.tsmocksrc/__tests__/mockOf.ts_tests__/mockOf.ts"
-  ],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules/**"]
 }
