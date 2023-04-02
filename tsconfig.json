@@ -16,8 +16,12 @@
     "skipLibCheck": true,
     "sourceMap": false,
     "strictNullChecks": false,
-    "target": "es2016",
+    "target": "es2020",
     "esModuleInterop": true
   },
-  "include": ["src/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/__tests__/mockOf.tsmocksrc/__tests__/mockOf.ts_tests__/mockOf.ts"
+  ],
+  "exclude": ["node_modules/**"]
 }

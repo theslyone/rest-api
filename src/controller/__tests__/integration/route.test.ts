@@ -1,39 +1,35 @@
-'use strict'
-
-import chai from 'chai'
-import { before, beforeEach, describe, it } from 'mocha'
 import supertest from 'supertest'
 import { HttpMethod, Server } from 'typescript-rest'
-import { ApiServer } from '../src/api-server'
-
-const expect = chai.expect
+import { ApiServer } from '../../../api-server'
 
 const apiServer = new ApiServer()
 const server = supertest.agent(`http://localhost:${apiServer.PORT}`)
 
+const sampleAsset = './asset.txt'
+
 describe('Route Tests', () => {
     describe('rest server', () => {
         it('should provide a catalog containing all exposed endpoints', () => {
-            expect(Server.getPaths()).to.include.members([
+            expect(Server.getPaths()).toEqual([
                 '/assets',
                 '/assets/:id',
                 '/posts',
                 '/posts/:id',
             ])
-            expect(Server.getHttpMethods('/assets')).to.have.members([
+            expect(Server.getHttpMethods('/assets')).toEqual([
+                HttpMethod.POST
+            ])
+            expect(Server.getHttpMethods('/assets/:id')).toEqual([
+                HttpMethod.GET,
+            ])
+            expect(Server.getHttpMethods('/posts')).toEqual([
                 HttpMethod.POST,
+                HttpMethod.GET
             ])
-            expect(Server.getHttpMethods('/assets/:id')).to.have.members([
-                HttpMethod.GET,
-            ])
-            expect(Server.getHttpMethods('/posts')).to.have.members([
-                HttpMethod.GET,
-                HttpMethod.POST,
-            ])
-            expect(Server.getHttpMethods('/posts/:id')).to.have.members([
-                HttpMethod.GET,
+            expect(Server.getHttpMethods('/posts/:id')).toEqual([
                 HttpMethod.PUT,
                 HttpMethod.DELETE,
+                HttpMethod.GET
             ])
         })
     })
@@ -44,7 +40,7 @@ describe('Route Tests', () => {
                 .get('/assets/__invalid__uuid')
                 .expect(400)
                 .then(({ body }) => {
-                    expect(body).to.deep.equal({
+                    expect(body).toEqual({
                         message: '"id" must only contain hexadecimal characters',
                     })
                 })
@@ -55,14 +51,14 @@ describe('Route Tests', () => {
                 .get('/assets/6427c4114450d70012b6a4b2')
                 .expect(404)
                 .then(({ body }) => {
-                    expect(body).to.deep.equal({ message: 'asset not found' })
+                    expect(body).toEqual({ message: 'asset not found' })
                 })
         })
 
         it('should save an asset', async () => {
             await server
                 .post('/assets')
-                .attach('asset', './test/mocha.opts')
+                .attach('asset', sampleAsset)
                 .expect(200)
         })
     })
@@ -73,7 +69,7 @@ describe('Route Tests', () => {
                 .get('/posts/__invalid__uuid')
                 .expect(400)
                 .then(({ body }) => {
-                    expect(body).to.deep.equal({
+                    expect(body).toEqual({
                         message: '"id" must only contain hexadecimal characters',
                     })
                 })
@@ -84,14 +80,14 @@ describe('Route Tests', () => {
                 .get('/posts/6427c4114450d70012b6a4b1')
                 .expect(404)
                 .then(({ body }) => {
-                    expect(body).to.deep.equal({ message: 'post not found' })
+                    expect(body).toEqual({ message: 'post not found' })
                 })
         })
 
         it('should save a post', async () => {
             const { body: asset } = await server
                 .post('/assets')
-                .attach('asset', './test/mocha.opts')
+                .attach('asset', sampleAsset)
             await server
                 .post('/posts')
                 .send({
@@ -108,7 +104,7 @@ describe('Route Tests', () => {
             beforeEach(async () => {
                 const { body: asset } = await server
                     .post('/assets')
-                    .attach('asset', './test/mocha.opts')
+                    .attach('asset', sampleAsset)
                 const { body } = await server
                     .post('/posts')
                     .send({
@@ -137,8 +133,8 @@ describe('Route Tests', () => {
                     })
                     .expect(200)
                     .then(({ body }) => {
-                        expect(body.category).to.deep.equal('test 2')
-                        expect(body.content).to.deep.equal('test 2')
+                        expect(body.category).toEqual('test 2')
+                        expect(body.content).toEqual('test 2')
                     })
             })
 
@@ -150,11 +146,11 @@ describe('Route Tests', () => {
         })
 
 
-        describe('with several posts', async () => {
-            before(async () => {
+        describe('with several posts', () => {
+            beforeAll(async () => {
                 const { body: asset } = await server
                     .post('/assets')
-                    .attach('asset', './test/mocha.opts')
+                    .attach('asset', sampleAsset)
 
                 for (let idx = 0; idx <= 5; idx++) {
                     await server
@@ -172,7 +168,7 @@ describe('Route Tests', () => {
                 await server
                     .get('/posts')
                     .expect(200).then(({ body }) => {
-                        expect(body.length).to.be.gte(5)
+                        expect(body.length).toBeGreaterThanOrEqual(5)
                     })
             })
         })

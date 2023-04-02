@@ -4,7 +4,7 @@ import { Model } from 'mongoose'
 const { Schema, model } = mongoose
 const { ObjectId } = Schema.Types
 
-type PostType = Post & mongoose.Document
+export type PostType = Post & mongoose.Document
 
 export interface Post {
     _id?: string

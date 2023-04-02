@@ -12,7 +12,7 @@ Also includes a postman collection to ease trying out all available endpoints.
 - [x] Containerize using `docker`.
 - [x] Route tests using `supertest`.
 - [ ] Add API authentication and authorization using `passport`.
-- [ ] Implement unit and integration tests.
+- [x] Implement unit and integration tests.
 
 ## Exposed endpoints
 
@@ -46,8 +46,6 @@ docker-compose up -d
 A postman collection is provided for ease. You can also try the above listed endpoints using a preferred rest client (curl etc)
 
 ## Running tests
-
-`Note: Only route tests are implemented for simplicity but unit and integration tests should be added to provide more test coverage.`
 
 ```sh
 docker-compose up -d

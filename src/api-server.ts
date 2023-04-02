@@ -16,7 +16,7 @@ export class ApiServer {
         this.config()
 
         Server.useIoC()
-        Server.loadServices(this.app, 'controller/*', __dirname)
+        Server.loadServices(this.app, ['controller/*', '!**/__tests__*'], __dirname)
 
         this.app.use((err: HttpError, _: Request, res: Response, __: NextFunction) => {
             const { statusCode, message } = err

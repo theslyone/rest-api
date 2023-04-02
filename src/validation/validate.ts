@@ -1,6 +1,5 @@
 import Joi from '@hapi/joi'
 import { Request, Response } from 'express'
-import 'reflect-metadata'
 import { Errors } from 'typescript-rest'
 
 export interface JoiModelObject {

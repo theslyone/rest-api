@@ -3,7 +3,7 @@ import { Model } from 'mongoose'
 
 const { Schema, model } = mongoose
 
-type AssetType = Asset & mongoose.Document
+export type AssetType = Asset & mongoose.Document
 
 export interface Asset {
     _id?: string
